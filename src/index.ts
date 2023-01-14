@@ -1,1 +1,5 @@
-export const dummyvar = 'delet this nephew';
+// Addresses
+export * from './addresses';
+
+// Ethers Factories & Types
+export * from './types';

@@ -1,13 +1,15 @@
 {
   "name": "@0xtarc/example-sdk",
   "author": "0xTARC <0xTARC@protonmail.com> (https://0xtarc.substack.com)",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "An Example SDK created with Typechain",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "license": "MIT",
   "scripts": {
-    "build": "rm -rf ./dist && tsc"
+    "build": "rm -rf ./dist && tsc",
+    "gen-hardhat-smartcontract-lottery-bindings": "find ./node_modules/hardhat-smartcontract-lottery/artifacts -name '*.json' ! -name '*dbg.json' ! -path './node_modules/hardhat-smartcontract-lottery/artifacts/build-info/*' | xargs npx typechain --target ethers-v5 --out-dir src/types",
+    "prebuild": "npm run gen-hardhat-smartcontract-lottery-bindings"
   },
   "files": [
     "dist/",
@@ -15,7 +17,8 @@
     "README.md"
   ],
   "dependencies": {
-    "ethers": "^5.7.1"
+    "ethers": "^5.7.1",
+    "hardhat-smartcontract-lottery-fcc": "github:0xTARC/hardhat-smartcontract-lottery-fcc#bb8b04d"
   },
   "devDependencies": {
     "@typechain/ethers-v5": "^10.2.0",
